@@ -1,0 +1,39 @@
+﻿# ── Python virtualenv ──────────────────────────────────────────────
+backend/Lib/
+backend/Include/
+backend/Scripts/
+backend/pyvenv.cfg
+backend/venv/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment variables
+.env
+*.env.local
+
+# ── Node / Frontend ────────────────────────────────────────────────
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Build artefacts
+dist/
+build/
+*.tsbuildinfo
+
+# ── Vite / IDE ─────────────────────────────────────────────────────
+.vite/
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# ── Misc ───────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.swp
