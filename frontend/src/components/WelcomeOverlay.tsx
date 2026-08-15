@@ -30,11 +30,24 @@ export default function WelcomeOverlay({ onDismiss }: Props) {
           <li><strong>AI Brief</strong> — press "AI Brief" to get a GO/NO-GO from IBM Granite.</li>
         </ol>
 
-        <div style={{ fontSize: 11, color: "#555", border: "1px solid #ccc", padding: "6px 10px", marginBottom: 16 }}>
-          <strong>Legend:</strong>&nbsp;
-          <span style={{ marginRight: 12 }}>&#9679; 3D rocket model</span>
-          <span style={{ marginRight: 12 }}>&#9472; Flight path (blue)</span>
-          <span>&#9679; Debris (orange)</span>
+        <div style={{ fontSize: 11, color: "#555", border: "1px solid #ccc", padding: "6px 10px", marginBottom: 16, display: "flex", gap: 14, flexWrap: "wrap" }}>
+          <strong>Legend:</strong>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
+            <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff6030", display: "inline-block" }} />
+            3D Rocket
+          </span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
+            <span style={{ width: 16, height: 3, background: "#00bfff", display: "inline-block" }} />
+            Flight path
+          </span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
+            <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#f97316", display: "inline-block" }} />
+            Debris
+          </span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
+            <span style={{ width: 10, height: 10, borderRadius: "50%", background: "red", display: "inline-block" }} />
+            Launch site
+          </span>
         </div>
 
         <button

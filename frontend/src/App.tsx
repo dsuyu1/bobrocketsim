@@ -21,6 +21,7 @@ export default function App() {
   const [briefingLoading, setBriefingLoading] = useState(false);
   const [cameraMode, setCameraMode]         = useState<CameraMode>("third_person");
   const [missionToast, setMissionToast]     = useState<{ reached: boolean; altKm: number } | null>(null);
+  const [launchPad, setLaunchPad]           = useState<{ lat: number; lon: number } | null>(null);
   const targetHitRef                        = useRef(false);
 
   const { telemetry, debrisPoints, conjunctionAlerts, startLaunch, isConnected, statusMessage } =
@@ -51,6 +52,7 @@ export default function App() {
     setShowBriefing(false);
     setLaunching(true);
     setMissionToast(null);
+    setLaunchPad({ lat, lon });
     targetHitRef.current = false;
     startLaunch(lat, lon, t0, missionId, payloadKg, throttlePct);
   };
@@ -88,6 +90,8 @@ export default function App() {
         debrisPoints={debrisPoints}
         conjunctionAlerts={conjunctionAlerts}
         cameraMode={cameraMode}
+        launchLat={launchPad?.lat ?? null}
+        launchLon={launchPad?.lon ?? null}
       />
 
       {/* ── Cockpit HUD (first-person overlay) ── */}

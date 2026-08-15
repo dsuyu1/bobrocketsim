@@ -32,6 +32,8 @@ interface Props {
   debrisPoints: DebrisObject[];
   conjunctionAlerts: string[];
   cameraMode: CameraMode;
+  launchLat: number | null;
+  launchLon: number | null;
 }
 
 function ecefCart(x: number, y: number, z: number) {
@@ -96,7 +98,7 @@ function rocketOrientation(
   return Cesium.Transforms.headingPitchRollQuaternion(pos, hpr, Cesium.Ellipsoid.WGS84);
 }
 
-export default function GlobeView({ telemetry, debrisPoints, conjunctionAlerts, cameraMode }: Props) {
+export default function GlobeView({ telemetry, debrisPoints, conjunctionAlerts, cameraMode, launchLat, launchLon }: Props) {
   const viewerRef    = useRef<Cesium.Viewer | null>(null);
   const lastCamAlt   = useRef<number>(-1);
   const trailRef     = useRef<Cesium.Cartesian3[]>([]);
@@ -302,6 +304,30 @@ export default function GlobeView({ telemetry, debrisPoints, conjunctionAlerts, 
               clampToGround={false}
             />
           </Entity>
+        )}
+
+        {/* Launch site red dot */}
+        {launchLat !== null && launchLon !== null && (
+          <Entity
+            position={Cesium.Cartesian3.fromDegrees(launchLon, launchLat)}
+            point={{
+              pixelSize: 10,
+              color: Cesium.Color.RED,
+              outlineColor: Cesium.Color.WHITE,
+              outlineWidth: 1.5,
+              disableDepthTestDistance: Number.POSITIVE_INFINITY,
+            }}
+            label={{
+              text: "Launch Site",
+              font: "11px Arial",
+              fillColor: Cesium.Color.WHITE,
+              outlineColor: Cesium.Color.BLACK,
+              outlineWidth: 2,
+              style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+              pixelOffset: new Cesium.Cartesian2(0, -20),
+              disableDepthTestDistance: Number.POSITIVE_INFINITY,
+            }}
+          />
         )}
 
         {/* Debris point cloud */}
